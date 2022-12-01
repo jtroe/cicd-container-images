@@ -13,8 +13,8 @@ RUN powershell (New-Object System.Net.WebClient).DownloadFile('https://repo.anac
     miniconda3.exe /InstallationType=JustMe /RegisterPython=1 /S /D=C:\Miniconda3 && \
     del miniconda3.exe
 
-# add conda to PATH
-ENV PATH C:\Miniconda3\Library\bin:$PATH
+# add conda to PATH, Windows-style
+RUN setx /M PATH "%PATH%;C:/Miniconda3/Library/bin"
 
 CMD ["cmd"]
 
