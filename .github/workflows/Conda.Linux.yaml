@@ -1,10 +1,9 @@
-# Build and Push CondaBuild Linux Container Image
-name: DockerBuildCondaBuildLinux
+# Build and Push Conda Linux Container Image
+name: DockerBuildCondaLinux
 
 on:
-  workflow_run:
-    workflows: [DockerBuildCondaLinux]
-    types: [completed]
+  push:
+    branches: [main]
   # allow it to be run on-demand
   workflow_dispatch:
 
@@ -12,7 +11,6 @@ jobs:
   build-and-push:
     name: Build Docker image and push to repositories
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event.workflow_dispatch != null }}
 
     steps:
       - name: Checkout code
@@ -36,9 +34,9 @@ jobs:
         with:
           # relative path to the place where source code with Dockerfile is located
           context: .
-          file: ./python/CondaBuild.Linux.Dockerfile
+          file: ./python/Conda.Linux.Dockerfile
           tags: |
-            ghcr.io/jtroe/cicd-container-images/condabuild:latest
+            ghcr.io/jtroe/cicd-container-images/conda:latest
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
