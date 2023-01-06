@@ -11,7 +11,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 ENV DEBIAN_FRONTEND=noninteractive
 # install build/dev tools
 RUN apt-get update && apt-get upgrade -y && \
-  apt-get install -y curl bzip2 vim-tiny p7zip git gcc make tzdata gettext-base libglib2.0-0 locales wget && \
+  apt-get install -y curl bzip2 vim-tiny p7zip git gcc make tzdata gettext-base libglib2.0-0 locales wget libkrb5-dev && \
   # clean the apt cache at the end of each apt command so that the caches don't get stored in the layer
   apt-get clean && rm -rf /var/lib/apt/lists/
 RUN locale-gen "en_US.UTF-8"
