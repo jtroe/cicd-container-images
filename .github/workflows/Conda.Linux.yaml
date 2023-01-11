@@ -36,7 +36,7 @@ jobs:
           context: .
           file: ./python/Conda.Linux.Dockerfile
           tags: |
-            ghcr.io/${GITHUB_REPOSITORY}/conda:latest
+            ghcr.io/{{GITHUB_REPOSITORY}}/conda:latest
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
