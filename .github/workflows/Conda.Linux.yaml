@@ -13,8 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Display env
-        run: env
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -38,7 +36,7 @@ jobs:
           context: .
           file: ./python/Conda.Linux.Dockerfile
           tags: |
-            ghcr.io/jtroe/cicd-container-images/conda:latest
+            ghcr.io/${{ env.GITHUB_REPOSITORY }}/conda:latest
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
