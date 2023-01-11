@@ -27,7 +27,18 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            ghcr.io/jtroe/cicd-container-images/conda
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=schedule,pattern={{date 'YY.MM'}},enable={{is_default_branch}}
+            type=sha,format=long
+
       - id: docker_build
         name: Build image and push to GitHub Container Registry
         uses: docker/build-push-action@v2
@@ -35,8 +46,7 @@ jobs:
           # relative path to the place where source code with Dockerfile is located
           context: .
           file: ./python/Conda.Linux.Dockerfile
-          tags: |
-            ghcr.io/jtroe/cicd-container-images/conda:latest
+          tags: ${{ steps.meta.outputs.tags }}
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
