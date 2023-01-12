@@ -3,31 +3,26 @@ name: Build and Push CondaBuild Windows Container Image
 on:
   push:
     branches: [main]
-  # allow it to be run on-demand
-  workflow_dispatch:
+  workflow_dispatch: # allow it to be run on-demand
 
-# Starts jobs and sets the type of runner (Windows) they will run on
 jobs:
-  build-and-push:
-    name: Build Docker image and push to repositories
+  build:
+    name: Build image and push to GitHub Container Registry
     runs-on: windows-latest
 
     steps:
-      - name: Checkout code
+      - id: gh_checkout
+        name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Login to Github Packages
-        uses: azure/docker-login@v1
+      - id: docker_build
+        name: Build image and push to GitHub Container Registry
+        uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          login-server: ghcr.io
+          image: ghcr.io/arcgis/images/python.conda.windows
+          dockerfile: ./python/CondaBuild.Windows.Dockerfile
+          platform: windows/amd64
+          addLatest: true
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build image
-        run: |
-          docker build -f python/CondaBuild.Windows.Dockerfile -t ghcr.io/jtroe/cicd-container-images/condabuild-windows:latest .
-      
-      - name:  Push container to GitHub Container Registry
-        if: ${{ github.ref == 'refs/heads/main' }}
-        run: |
-          docker push ghcr.io/jtroe/cicd-container-images/condabuild-windows:latest
