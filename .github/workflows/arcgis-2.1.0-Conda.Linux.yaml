@@ -33,9 +33,9 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ghcr.io/jtroe/cicd-container-images/arcgis-conda:2.1.0
+            ghcr.io/jtroe/cicd-container-images/arcgis-conda
           tags: |
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=2.1.0,enable={{is_default_branch}}
             type=schedule,pattern={{date 'YY.MM'}},enable={{is_default_branch}}
             type=sha,format=long
 
