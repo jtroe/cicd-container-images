@@ -1,5 +1,5 @@
-# Build and Push Conda Linux Container Image
-name: DockerBuildCondaLinux
+# Build and Push Arcgis Conda Linux Container Image
+name: DockerBuildArcgis210CondaLinux
 
 on:
   push:
@@ -33,9 +33,9 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ghcr.io/jtroe/cicd-container-images/conda
+            ghcr.io/jtroe/cicd-container-images/arcgis-conda
           tags: |
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=2.1.0,enable={{is_default_branch}}
             type=schedule,pattern={{date 'YY.MM'}},enable={{is_default_branch}}
             type=sha,format=long
 
@@ -45,7 +45,7 @@ jobs:
         with:
           # relative path to the place where source code with Dockerfile is located
           context: .
-          file: ./python/Conda.Linux.Dockerfile
+          file: ./python/arcgis-2.1.0-Conda.Linux.Dockerfile
           tags: ${{ steps.meta.outputs.tags }}
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
