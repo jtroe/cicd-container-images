@@ -1,4 +1,4 @@
-name: Build and Push CondaBuild Windows Container Image
+name: Build and Push ArcGIS Windows Container Image
 
 on:
   push:
@@ -29,9 +29,7 @@ jobs:
           ARCGIS_PRO_3_CAB1_URL: ${{ secrets.ARCGIS_PRO_3_CAB1_URL }}
           ARCGIS_PRO_3_MSI_URL: ${{ secrets.ARCGIS_PRO_3_MSI_URL }}
         run: |
-          docker build -f arcgis/ArcGISPro.Windows.Dockerfile -t ghcr.io/jtroe/cicd/arcgispro:3.0-latest \
-          --build-arg ARCGIS_PRO_3_CAB_URL=$ARCGIS_PRO_3_CAB_URL --build-arg ARCGIS_PRO_3_CAB1_URL=$ARCGIS_PRO_3_CAB1_URL --build-arg ARCGIS_PRO_3_MSI_URL=$ARCGIS_PRO_3_MSI_URL \
-          .
+          docker build -f arcgis/ArcGISPro.Windows.Dockerfile -t ghcr.io/jtroe/cicd/arcgispro:3.0-latest --build-arg ARCGIS_PRO_3_CAB_URL=$ARCGIS_PRO_3_CAB_URL --build-arg ARCGIS_PRO_3_CAB1_URL=$ARCGIS_PRO_3_CAB1_URL --build-arg ARCGIS_PRO_3_MSI_URL=$ARCGIS_PRO_3_MSI_URL .
       
       - name:  Push container to GitHub Container Registry
         if: ${{ github.ref == 'refs/heads/main' }}
