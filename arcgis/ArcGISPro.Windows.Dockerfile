@@ -15,11 +15,9 @@ ENV ARCGIS_PRO_3_CAB_URL ${ARCGIS_PRO_3_CAB_URL}
 ENV ARCGIS_PRO_CAB1_URL ${ARCGIS_PRO_3_CAB1_URL}
 ENV ARCGIS_PRO_MSI_URL ${ARCGIS_PRO_3_MSI_URL}
 
+COPY ./install-arcgis-pro-3.0.3.ps1 /tmp
+
 # download pro msi and cabs and install
-RUN powershell (New-Object System.Net.WebClient).DownloadFile($env:ARCGIS_PRO_3_CAB_URL, 'ArcGISPro.cab') -and \
-    (New-Object System.Net.WebClient).DownloadFile($env:ARCGIS_PRO_3_CAB1_URL, 'ArcGISPro1.cab') -and \
-    (New-Object System.Net.WebClient).DownloadFile($env:ARCGIS_PRO_3_MSI_URL, 'ArcGISPro.msi') -and \
-    "msiexec.exe /i ArcGISPro.msi /qb ALLUSERS=1 ACCEPTEULA=YES CHECKFORUPDATESATSTARTUP=0 LOCK_AUTH_SETTINGS=FALSE ESRI_LICENSE_HOST=@geosaurus.esri.com SOFTWARE_CLASS=PROFESSIONAL AUTHORIZATION_TYPE=CONCURRENT_USE" -and \
-    "rm *.cab && rm *.msi"
+RUN powershell ./install-arcgis-pro-3.0.3.ps1
 
 CMD ["cmd"]
