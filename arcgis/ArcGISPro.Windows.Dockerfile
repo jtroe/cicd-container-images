@@ -15,7 +15,7 @@ ENV ARCGIS_PRO_3_CAB_URL ${ARCGIS_PRO_3_CAB_URL}
 ENV ARCGIS_PRO_CAB1_URL ${ARCGIS_PRO_3_CAB1_URL}
 ENV ARCGIS_PRO_MSI_URL ${ARCGIS_PRO_3_MSI_URL}
 
-COPY ./install-arcgis-pro-3.0.3.ps1 /tmp
+COPY ./arcgis/install-arcgis-pro-3.0.3.ps1 /tmp
 
 # download pro msi and cabs and install
 RUN powershell ./install-arcgis-pro-3.0.3.ps1
