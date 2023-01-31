@@ -1,4 +1,4 @@
-FROM ghcr.io/jtroe/cicd-container-images/conda:latest
+FROM ghcr.io/jtroe/cicd-container-images/conda-windows:latest
 
 LABEL org.opencontainers.image.authors="jroebuck@esri.com"
 LABEL org.opencontainers.image.description="Ubuntu-based image with miniconda and arcgis==2.1.0"
