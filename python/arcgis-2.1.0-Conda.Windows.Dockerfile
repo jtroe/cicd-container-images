@@ -10,5 +10,4 @@ RUN conda activate root && conda create -n arcgis -c esri arcgis==2.1.0 && \
   # clean conda cache so that the caches don't get stored in the layer
   conda clean -afy && conda activate arcgis
 
-ENV PATH /opt/conda/envs/arcgis/bin:$PATH
 RUN setx /M PATH "%PATH%;C:/Miniconda3/envs/arcgis/bin"
