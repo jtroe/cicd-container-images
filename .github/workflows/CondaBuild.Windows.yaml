@@ -27,7 +27,7 @@ jobs:
 
       - name: Build image
         run: |
-          docker build -f python/arcgis-2.1.0-Conda.Linux.Dockerfile -t ghcr.io/jtroe/cicd-container-images/arcgis-conda-windows:latest .
+          docker build -f python/CondaBuild.Windows.Dockerfile -t ghcr.io/jtroe/cicd-container-images/arcgis-conda-windows:latest .
       
       - name:  Push container to GitHub Container Registry
         if: ${{ github.ref == 'refs/heads/main' }}
