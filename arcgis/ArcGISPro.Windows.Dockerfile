@@ -17,6 +17,11 @@ ENV ARCGIS_PRO_MSI_URL ${ARCGIS_PRO_3_MSI_URL}
 
 COPY ./arcgis/install-arcgis-pro-3.0.3.ps1 /tmp
 
+# install chocolatey
+RUN Set-ExecutionPolicy Bypass -Scope Process -Force; \
+  [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; \
+  iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'));
+
 # download pro msi and cabs and install
 RUN powershell ./install-arcgis-pro-3.0.3.ps1
 
