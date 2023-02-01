@@ -1,3 +1,5 @@
+(Get-Service -name msiserver).Start()
+
 $wc = New-Object System.Net.WebClient
 $wc.DownloadFile($env:ARCGIS_PRO_3_CAB_URL, 'ArcGISPro.cab')
 Unblock-File ./ArcGISPro.cab
