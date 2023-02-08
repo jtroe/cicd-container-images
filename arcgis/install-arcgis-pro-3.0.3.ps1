@@ -18,6 +18,8 @@ Unblock-File ./ArcGISPro.msi
 # install arcgis pro 3
 msiexec.exe /i ArcGISPro.msi /quiet /qn /norestart /log C:/tmp/arcgisinstall.log ALLUSERS=1 ACCEPTEULA=YES CHECKFORUPDATESATSTARTUP=0 LOCK_AUTH_SETTINGS=FALSE ESRI_LICENSE_HOST=@geosaurus.esri.com SOFTWARE_CLASS=PROFESSIONAL AUTHORIZATION_TYPE=CONCURRENT_USE
 
+setx PATH "$env:PATH;C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\Scripts;C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3;C:\Program Files\ArcGIS\Pro\bin\Python\Scripts"
+
 # nix install files
 rm ArcGISPro.cab
 rm ArcGISPro1.cab
