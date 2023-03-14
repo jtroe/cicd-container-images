@@ -2,7 +2,7 @@ FROM sphinxdoc/sphinx:5.3.0
 
 # install zip cli
 RUN apt-get update && apt-get upgrade -y && \
-  apt-get install -y zip libkrb5-dev && \
+  apt-get install -y zip gcc libkrb5-dev && \
   # clean the apt cache at the end of each apt command so that the caches don't get stored in the layer
   apt-get clean && rm -rf /var/lib/apt/lists/
 
