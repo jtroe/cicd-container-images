@@ -2,8 +2,8 @@
 name: DockerBuildSphinxRTD
 
 on:
-  push:
-    branches: [main]
+  # push:
+  #  branches: [main]
   # allow it to be run on-demand
   workflow_dispatch:
 
@@ -35,7 +35,7 @@ jobs:
           images: |
             ghcr.io/jtroe/cicd-container-images/sphinx-rtd
           tags: |
-            type=raw,value=5.3.0
+            type=raw,value=3.2.1
             type=raw,value=latest,enable={{is_default_branch}}
             type=schedule,pattern={{date 'YY.MM'}},enable={{is_default_branch}}
             type=sha,format=long

@@ -7,4 +7,4 @@ RUN apt-get update && apt-get upgrade -y && \
   apt-get clean && rm -rf /var/lib/apt/lists/
 
 # install sphinx + read the docs theme
-RUN source activate arcgis && pip install sphinx==5.3.0 sphinx_rtd_theme==0.5.2
+RUN source activate arcgis && pip install sphinx==3.2.1 sphinx_rtd_theme==0.5.2
