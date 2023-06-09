@@ -7,7 +7,7 @@ LABEL org.opencontainers.image.source=https://github.com/jtroe/cicd-container-im
 
 
 # create arcgis environment w/ arcgis==2.1.0
-RUN source activate root && conda create -n arcgis -c esri arcgis==2.1.0 && \
+RUN source activate root && conda create -n arcgis -c esri arcgis==2.1.0.3 && \
   # clean conda cache so that the caches don't get stored in the layer
   conda clean -afy
 
